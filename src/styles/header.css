@@ -1,0 +1,41 @@
+.comp-logo{
+    font-family:Lobster,sans-serif;
+    font-weight: 600;
+    font-size: clamp(40px,3vw,50px);
+}
+
+.my-nav-item {
+    color: rgb(203, 105, 13);
+    font-size: 18px;
+    margin-inline: 2rem;
+    cursor:pointer;
+}
+
+.my-nav-item:hover{
+    color: brown;
+}
+.noline {
+    height: 2px;
+}
+
+.line {
+    height: 2px;
+    background-color: brown;
+    animation: slide linear forwards 0.3s;
+}
+
+
+@keyframes slide {
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 100%;
+    }
+}
+
+@media (max-width:900px) {
+    .my-nav-item{
+        margin-inline: 0.5rem;
+    }
+}
