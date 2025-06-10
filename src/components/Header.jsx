@@ -1,36 +1,44 @@
 import '../styles/header.css'
 import {useNavigate} from 'react-router-dom'
 import {useState} from 'react'
-import Button from 'react-bootstrap/Button';
 
-function NavItem({name,isActive,setActive,setHover, isHover}){
-    const navigate = useNavigate();
-
-    return(
-        <li className='my-nav-item' onMouseEnter={()=>setHover(name)} onMouseLeave={()=>setHover()}  onClick={()=>setActive(name)} >
-            {name}
-            <div className={isActive||isHover ? 'line' : 'noline'}></div>
-        </li>
-    )
-}
 
 export default function Header(){
 
-    const navs = ["Contact","About"]
-    const [activeNav,setActiveNav] = useState('');
-    const [prevactiveNav,setPrevActiveNav] = useState('');
-    const [hoverNav,setHoverNav] = useState('');
+    const navigate = useNavigate()
+    const [search,setSearch] = useState("");
+    const [showSearch, setShowSearch] = useState(false);
+
     return(
-            <div className='navbar' style={{backgroundColor:'lightgoldenrodyellow'}}>
-                <h1 style={{color:'brown'}} className="ms-4 comp-logo">Clays</h1>   
-                <ul className='nav mx-3 d-none d-md-flex' >
-                    {navs.map( Item=> {
-                        return <NavItem key={Item} name={Item} isActive={activeNav==Item} setActive={setActiveNav} setHover={setHoverNav} isHover={hoverNav==Item}/>
-                    })}
-                </ul>
-                <button className='btn d-md-none'>
-                    <i className='fa-solid fa-bars fa-lg'></i>
-                </button>
+            <div className='navbar px-3' style={{backgroundColor:'lightgoldenrodyellow'}}onClick={()=>setShowSearch(false)}>
+                <div className='d-flex '>
+                    <h1 style={{color:'brown'}} className="comp-logo cursor-pointer me-5">Clays</h1>
+                    <button className='my-btn search-icon d-md-none ms-5' onClick={(e)=>{e.stopPropagation();setShowSearch(true)}}>
+                        <i class="fa-solid fa-magnifying-glass cursor-pointer" style={{color:'brown'}}></i>
+                    </button>
+                    {   showSearch &&
+                        <span className='position-absolute' style={{left:'20%',top:'15px'}}>
+                            <form onSubmit={e=>{e.preventDefault();navigate(`/search?key=${search}`)}}>
+                                <input className='sm-search-bar' value={search} onChange={e=>setSearch(e.target.value)} placeholder='Search'></input>
+                                <button className='btn search-icon'>
+                                    <i class="fa-solid fa-magnifying-glass cursor-pointer" style={{color:'brown'}}></i>
+                                </button>
+                            </form>
+                        </span>
+                    }
+                    <span className='my-auto d-none d-md-flex'>
+                        <form onSubmit={e=>{e.preventDefault();navigate(`/search?key=${search}`)}}>
+                            <input className='search-bar' value={search} onChange={e=>setSearch(e.target.value)} placeholder='Search'></input>
+                            <button className='btn search-icon'>
+                                <i class="fa-solid fa-magnifying-glass cursor-pointer" style={{color:'brown'}}></i>
+                            </button>
+                        </form>
+                    </span>
+                </div>
+                
+                <i className="fa-regular fa-circle-user cursor-pointer" style={{color:'#a64c1c',fontSize:'clamp(25px,4vw,30px)'}}
+                onClick={(e)=>{e.stopPropagation();navigate("/profile")}}
+                ></i>
             </div> 
     )
 }
