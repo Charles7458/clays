@@ -22,9 +22,9 @@ function ListItem({children,link}){
 
 export default function Footer(){
     return(
-        <footer className="bg-secondary d-flex w-100" style={{bottom:'0',fontFamily:"Roboto, sans-serif",color:'lightgray'}}>
+        <footer className="bg-secondary d-flex flex-md-row flex-column w-100 my-footer">
             <div className="px-3 d-flex flex-column align-items-center justify-content-center">
-                <h1 style={{color:'lightgray'}} className="comp-logo cursor-pointer mb-5">Clays</h1>
+                <h1 style={{color:'lightgray'}} className="comp-logo cursor-pointer mt-5">Clays</h1>
                 <div>
                     <a href='#'><i className="fa-brands fa-square-x-twitter fa-2xl social-links"></i></a>
                     <a href='#'><i className="fa-brands fa-square-youtube fa-2xl social-links"></i></a>
