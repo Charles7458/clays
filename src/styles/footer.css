@@ -1,0 +1,17 @@
+
+.list-links{
+    color: lightgray;
+}
+
+.list-links:hover{
+    color: white;
+}
+
+.social-links{
+    color: lightgray;
+    margin-inline-end: 10px;
+}
+
+.social-links:hover {
+    color: white;
+}
